@@ -1,0 +1,67 @@
+<form (ngSubmit)="onSubmit()" #myForm="ngForm">
+    <div ngModelGroup="personalDetails" #personalDetail="ngModelGroup">
+        <div class="form-group">
+            <label for="fname">First Name</label>
+            <input id="fname" type="text" class="form-control"  
+            FormControlName="firstName" [(ngModel)]="firstName" required #fname="ngModel"> <!--ngmodel tells that this input has control over the form-->
+        </div>
+        <!-- <div>
+            <small *ngIf="fname.invalid && fname.touched">First Name Required</small>
+        </div> -->
+        <div class="form-group">
+            <label for="lname">Last Name</label>
+            <input id="lname" type="text" class="form-control" FormControlName="lastName" ngModel required #lname="ngModel">
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input id="email" type="text" class="form-control" FormControlName="email" ngModel required email> <!--ngmodel tells that this input has control over the form-->
+        </div>
+        <div>
+            <small *ngIf="personalDetail.invalid && personalDetail.touched">All required fields should be filled </small>
+        </div>
+        <button (click)="setdefaultvalues()">default values</button>
+        
+       
+    </div>
+
+        <div class="form-group">
+            <label for="comment">Comment</label>
+            <textarea id="comment" type="text" class="form-control" FormControlName="comment" ngModel></textarea>
+        </div>
+        <div class="form-group">
+            <label for="country">Country</label>
+            <select id="country" FormControlName="country" [ngModel]="defaultCountry">
+                <option value="select">Select your country</option>
+                <option value="India">India</option>
+                <option value="usa">USA</option>
+                <option value="russia">Russia</option>
+                <option value="uk">UK</option>
+            </select>
+
+        </div>
+        <div class="form-group">
+            <label for="gender">Gender:</label>
+            <span *ngFor="let gen of gender">
+                <input type="radio" id="{{gen.id}}" value="{{gen.value}}" FormControlName="gender" ngModel>
+                <label>{{gen.value}}</label>
+            </span>
+            <!-- <input type="radio" id="male" value="male" name="gender" ngModel>
+            <label for="male">Male</label>
+            <input type="radio" id="female" value="female" name="gender" ngModel>
+            <label for="female">Female</label>
+            <input type="radio" id="other" value="other" name="gender" ngModel>
+            <label for="other">Other</label> -->
+        </div>
+        <!-- <button class="btn">Submit</button> -->
+        <input type="submit" class="btn btn-primary" > <!--[disabled]="!myForm.valid" ....using property binding to disable the submit button when ngForm is invalid-->
+
+        <!-- <div class="form-data" (ngSubmit)="onSubmit()">
+            <h2>Form Data</h2>
+            <p>First Name: <b>{{firstname}}</b></p>
+            <p>Last Name: <b>{{lastname}}</b></p>
+            <p>Email: <b>{{email}}</b></p>
+            <p>Comment: <b>{{comment}}</b></p>
+            <p>Country: <b>{{country}}</b></p>
+            <p>Gender: <b>{{gen}}</b></p>
+        </div> -->
+</form> 

@@ -1,0 +1,38 @@
+<div class="container">
+    <div>
+        <input type="text" placeholder="search by gender" 
+        style="width: 400px; height: 30px; padding: 2px 10px; margin:10px 7px"
+        [(ngModel)]="filterText"
+        >
+    </div>
+    <h3>Total Students: {{totalStudends | async}} </h3>
+    <table id="student">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Course</th>
+                <th>Marks</th>
+                <th>Percentage</th>
+                <th>DOB</th>
+                <th>Gender</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- <tr *ngFor="let std of students | filterStudent: filterText "> -->
+            <tr *ngFor="let std of filteredStudents ">
+                <td> {{std.name}} </td>                                                
+                <td> {{std.course}} </td>
+                <!-- <td> {{std.marks}} </td> -->
+                <td> <input type="number" value="std.marks" [(ngModel)]="std.marks"> </td>
+                <!-- <td> {{std.marks / totalMarks * 100}} </td> -->
+                <td> {{std.marks | percentage: totalMarks: 2 }} </td>
+                <td> {{std.DOB | date }} </td>
+                <td> {{std.gender | titlecase }} </td>
+            </tr>
+        </tbody>
+    </table>
+    <br><br>
+    <button (click)="AddDummyStudent()" >Add Student</button>
+    <button (click)="changeGender()" >Change Gender</button>
+</div>          
+

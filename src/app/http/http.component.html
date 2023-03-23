@@ -1,0 +1,37 @@
+<div class="profile-area">
+    <form class="form-group" #createProfile="ngForm" (ngSubmit)="onSubmit(createProfile.value)">
+        <h2>create profile</h2>
+        <label for="name">Name:</label>
+        <input type="text" id="name" class="form-control" name="pname" ngModel>
+        <label for="dob">Date of Birth:</label>
+        <input type="text" id="dob" class="form-control" name="pdob" ngModel>
+        <label for="skills">Skills:</label>
+        <input type="text" id="skills" class="form-control" name="pskills" ngModel>
+        <input type="submit" class="btn btn-primary" value="{{!editMode ? 'submit' : 'update'}}" >
+    </form>
+</div>
+
+<div class="display-area">
+    <h2>All profiles</h2>
+    <table id="profiles">
+        <thead>
+            <tr>
+                <th>s.no</th>
+                <th>name</th>
+                <th>dob</th>
+                <th>skills</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let profile of allprofiles; index as i">
+                <td>{{i + 1}}</td>
+                <td>{{profile.pname}}</td>
+                <td>{{profile.pdob}}</td>
+                <td>{{profile.pskills}}</td>
+                <button class="btn-delete" (click)="onDelete(profile.id)">Delete</button>
+                <button class="btn-edit" (click)="onEdit(profile.id)">Edit</button>
+            </tr>
+        </tbody>
+    </table>
+    <input type="submit" value="fetch" class="btn btn-dark" (click)="onClick()">
+</div>

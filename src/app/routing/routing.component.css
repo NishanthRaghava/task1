@@ -1,0 +1,14 @@
+a{
+    text-decoration: none;
+    color:black;
+}
+
+ li{
+    display:inline;
+    margin-right: 10px;  
+}
+
+ul{
+    background-color: rgb(247, 221, 195);
+    width:max-content
+}

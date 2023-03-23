@@ -1,0 +1,12 @@
+form{
+    width:620px;
+    margin-left:10px;
+}
+table,td,th,button{
+    border:1px solid black;
+}
+
+button:hover{
+    background-color: rgb(64, 61, 61);
+    color:white;
+}

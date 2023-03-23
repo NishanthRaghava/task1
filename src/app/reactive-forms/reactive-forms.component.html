@@ -1,0 +1,72 @@
+<div class="form myForm" [ngClass]="formstatus">
+    <form [formGroup]="reactiveForm" (ngSubmit)="onSubmit()" >
+        <div formGroupName="personalDetails">
+            <div class="form-group">
+                <label for="fname">First Name</label>
+                <input id="fname" type="text" class="form-control"  
+                formControlName="firstName"  > 
+            </div> 
+            <div>
+                <small *ngIf="reactiveForm.get('personalDetails.firstName').touched && reactiveForm.get('personalDetails.firstName').errors?.['required']" >
+                    first name is a required field
+                </small>
+                <small *ngIf="reactiveForm.get('personalDetails.firstName').errors?.['noSpaceAllowed']" >
+                    first name should not contain space
+                </small>
+            </div>
+            <div class="form-group">
+                <label for="lname">Last Name</label>
+                <input id="lname" type="text" class="form-control" 
+                formControlName="lastName" >
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input id="email" type="text" class="form-control" 
+                formControlName="email" > 
+            </div>
+            <div>
+                <span style="color: red" *ngIf="!reactiveForm.get('personalDetails.email').valid && reactiveForm.get('personalDetails.email').touched">
+                    The entered email is invalid!
+                </span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="comment">Comment</label>
+            <textarea id="comment" type="text" class="form-control" formControlName="comment" ></textarea>
+        </div>
+        <div class="form-group">
+            <label for="country">Country</label>
+            <select id="country" formControlName="country" class="form-control">
+                <option value="select">Select your country</option>
+                <option value="India" >India</option>
+                <option value="usa">USA</option>
+                <option value="russia">Russia</option>
+                <option value="uk">UK</option>
+            </select>
+
+        </div>
+        <div class="form-group ">
+            <label for="gender" >Gender:</label><br>
+            <input type="radio" id="male" value="male" formControlName="gender">
+            <label for="male">Male</label><br>
+            <input type="radio" id="female" value="female" formControlName="gender">
+            <label for="female">Female</label><br>
+            <input type="radio" id="other" value="other" formControlName="gender">
+            <label for="other">Other</label>
+        </div>
+        <div class="form-group"><br>
+            <label for="hobbies">hobbies:</label>
+            <input type="checkbox" id="music" value="music" formControlName="hobbies">
+            <label for="music">Music</label>
+            <input type="checkbox" id="sports" value="sports" formControlName="hobbies">
+            <label for="sports">Sports</label>
+        </div>
+        <div formArrayName="skills" >    
+            <ng-container *ngFor="let skll of reactiveForm.get('skills')['controls']"> <!--it returns a form array and the control is used to access the values in array-->
+                <input type="text" placeholder="skills..">  
+            </ng-container>
+        </div>
+        
+        <input type="submit" class="btn btn-dark" >
+</form> 
+</div>
